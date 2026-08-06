@@ -4,18 +4,38 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   Mail,
-  Phone,
-  MapPin,
   Send,
-  Dribbble,
   Instagram,
   Linkedin,
+  Facebook,
+  Briefcase,
 } from 'lucide-react';
 
 const contactInfo = [
-  { icon: Mail, label: 'Email', value: 'hello@javeriya.design' },
-  { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-  { icon: MapPin, label: 'Location', value: 'Remote · Worldwide' },
+  { icon: Mail, label: 'Email', value: 'javeriya.mal@gmail.com', href: 'mailto:javeriya.mal@gmail.com' },
+];
+
+const socialLinks = [
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/JaveriaGFX',
+    icon: Facebook,
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/javeriya_graphics/',
+    icon: Instagram,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/javeria-wajid/',
+    icon: Linkedin,
+  },
+  {
+    label: 'Behance',
+    href: 'https://www.behance.net/javeriawajidali',
+    icon: Briefcase,
+  },
 ];
 
 export default function Contact() {
@@ -71,8 +91,9 @@ export default function Contact() {
 
             <div className="mt-8 space-y-4">
               {contactInfo.map((info) => (
-                <div
+                <a
                   key={info.label}
+                  href={info.href}
                   className="flex items-center gap-4 rounded-2xl glass p-4 transition-colors hover:bg-white/10"
                 >
                   <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-brand shadow-lg shadow-purple-500/20">
@@ -86,18 +107,22 @@ export default function Contact() {
                       {info.value}
                     </div>
                   </div>
-                </div>
+                </a>
               ))}
             </div>
 
-            <div className="mt-8 flex gap-4">
-              {[Dribbble, Instagram, Linkedin].map((Icon, i) => (
-                <button
-                  key={i}
+            <div className="mt-8 flex flex-wrap gap-4">
+              {socialLinks.map(({ label, href, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
                   className="flex h-12 w-12 items-center justify-center rounded-full glass text-zinc-300 transition-all hover:scale-110 hover:text-white hover:glow-purple"
                 >
                   <Icon className="h-5 w-5" />
-                </button>
+                </a>
               ))}
             </div>
           </motion.div>

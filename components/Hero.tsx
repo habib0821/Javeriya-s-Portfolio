@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail, Dribbble, Instagram, Linkedin } from 'lucide-react';
+import { ArrowRight, Mail, Facebook, Instagram, Linkedin, Briefcase } from 'lucide-react';
 
 const floatingIcons = [
   { label: 'Ps', className: 'top-[8%] left-[2%]', delay: 0 },
@@ -11,6 +11,14 @@ const floatingIcons = [
   { label: 'Ae', className: 'bottom-[8%] right-[6%]', delay: 1.5 },
   { label: 'Palette', className: 'top-[42%] right-[-4%]', delay: 2 },
   { label: 'Pen', className: 'top-[50%] left-[-6%]', delay: 2.5 },
+];
+
+const socialLinks = [
+  { label: 'Email', href: 'mailto:javeriya.mal@gmail.com', icon: Mail },
+  { label: 'Facebook', href: 'https://www.facebook.com/JaveriaGFX', icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/javeriya_graphics/', icon: Instagram },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/javeria-wajid/', icon: Linkedin },
+  { label: 'Behance', href: 'https://www.behance.net/javeriawajidali', icon: Briefcase },
 ];
 
 export default function Hero() {
@@ -113,21 +121,19 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-8 flex items-center justify-center gap-4 lg:justify-start"
+            className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start"
           >
-            {[
-              { Icon: Dribbble, label: 'Dribbble' },
-              { Icon: Instagram, label: 'Instagram' },
-              { Icon: Linkedin, label: 'LinkedIn' },
-              { Icon: Mail, label: 'Email' },
-            ].map(({ Icon, label }) => (
-              <button
+            {socialLinks.map(({ label, href, icon: Icon }) => (
+              <a
                 key={label}
+                href={href}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noreferrer' : undefined}
                 aria-label={label}
                 className="flex h-10 w-10 items-center justify-center rounded-full glass text-zinc-300 transition-all hover:scale-110 hover:text-white hover:glow-purple"
               >
                 <Icon className="h-4 w-4" />
-              </button>
+              </a>
             ))}
           </motion.div>
         </div>
